@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: ../Dockerfile
+    image: sajalshres/todo-on-rails:latest
+    depends_on: 
+      - postgres
+    ports:
+      - 3000:3000
+    environment: 
+      - API_DATABASE_PASSWORD=dbpassword@2020
+    command: "rails s -b 0.0.0.0"
+    volumes: 
+      - ./api:/app
+    container_name: todo-api
+  postgres:
+    image: postgres:12
+    restart: on-failure
+    ports:
+      - 5432:5432
+    environment: 
+      - POSTGRES_DB=todo_db
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword@2020
+    container_name: todo-postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: on-failure
+    ports: 
+      - 5000:80
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=sajal.shres@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+    links: 
+      - postgres
+    container_name: todo-pgadmin
+    
