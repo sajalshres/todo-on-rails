@@ -1,32 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-api-deployment
+  name: postgres
   labels:
     app: todo-api-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: todo-api-app
-      tier: app
+      tier: database
   template:
     metadata:
-      name: todo-api
+      name: postgres
       labels:
         app: todo-api-app
-        tier: app
+        tier: database
     spec:
       containers:
-        - name: todo-api
-          image: sajalshres/todo-on-rails:latest
-          args: ["rails", "s", "-b", "0.0.0.0"]
+        - name: postgres
+          image: postgres:12
           env:
-            - name: API_DATABASE_PASSWORD
+            - name: POSTGRES_DB
+              value: todo_db
+            - name: POSTGRES_USER
+              value: dbuser
+            - name: POSTGRES_PASSWORD
               value: dbpassword@2020
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
           ports:
-            - containerPort: 3000
+            - containerPort: 5432

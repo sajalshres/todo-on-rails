@@ -1,0 +1,19 @@
+{
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.autoIndent": "full",
+        "editor.formatOnSave": true
+    },
+    "yaml.format.enable": true,
+    "yaml.completion": true,
+    "yaml.schemas": {
+        "kubernetes": "globPattern"
+    }
+}

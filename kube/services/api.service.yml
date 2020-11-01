@@ -8,6 +8,7 @@ metadata:
 spec:
   ports:
     - port: 3000
+      targetPort: 3000
   selector:
     app: todo-api-app
     tier: app
