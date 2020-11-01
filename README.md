@@ -2,6 +2,12 @@
 
 A simple TODO api written on Ruby on rails with Docker and Kubernetes
 
+## Requirements
+
+- Docker (`19.03.13`)
+- Docker Compose (`1.27.4`)
+- Kubernetes (`1.18.8`)
+
 ## Development Mode
 
 Build Docker image using:
@@ -42,7 +48,7 @@ kubectl create -f kube/services/api.service.yml
 # Postgres Deployment
 kubectl create -f kube/deployment/postgres.deploy.yml
 
-# Rails TODO api deployment
+# Rails TODO api Deployment
 kubectl create -f kube/deployment/api.deploy.yml
 ```
 
